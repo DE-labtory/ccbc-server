@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+group 'io.coin.ccbc'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation(project(':ccbc-domain'))
+    implementation(project(':ccbc-infra'))
+    implementation(project(':ccbc-support'))
+    implementation(project(':ccbc-jpa'))
+    implementation(project(':ccbc-kai'))
+    implementation(project(':ccbc-klayswap'))
+    implementation(project(':ccbc-definix'))
+    implementation(project(':ccbc-klayfi'))
+    implementation(project(':ccbc-kokoa'))
+    implementation(project(':ccbc-kronos'))
+
+    implementation "com.squareup.okhttp3:okhttp:4.9.1"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
+
+    // spring
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // db
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // swagger
+    api group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.4.4'
+    api group: 'org.springdoc', name: 'springdoc-openapi-data-rest', version: '1.4.4'
+    api group: 'org.springdoc', name: 'springdoc-openapi-webmvc-core', version: '1.4.4'
+
+    // junit
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    // cache
+    implementation 'com.github.ben-manes.caffeine:caffeine'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+
+    // flyway
+    implementation 'org.flywaydb:flyway-core:7.3.0'
+
+    // selenium
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.0.1'
+}

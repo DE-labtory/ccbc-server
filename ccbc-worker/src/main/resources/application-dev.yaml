@@ -1,0 +1,75 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://cloudsql-proxy:5432/ccbc
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    platform: postgres
+    hikari:
+      auto-commit: false
+      idle-timeout: 10000
+      minimumIdle: 10
+      maximum-pool-size: 30
+      read-only: false
+      connection-timeout: 20000
+      data-source-properties:
+        stringtype: unspecified
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: false
+
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+  flyway:
+    enabled: false
+    encoding: UTF-8
+    schemas: flyway
+
+app:
+  price-worker:
+    cron: "*/15 * * * * ?"
+  asset-history-worker:
+    cron: "0 */15 * * * ?"
+  price-history-worker:
+    cron: "0 */5 * * * ?"
+  pool-reserve-worker:
+    cron: "0 */15 * * * ?"
+  price-history-syncer:
+    cron: "0 0 0 * * ?"
+    duration: 1440 # minute, 24 hour
+    interval: 15 # minute
+  asset-history-storage-guardian:
+    cron: "0 0 0 * * ?" # every midnight
+  price-history-storage-guardian:
+    cron: "0 0 0 * * ?" # every midnight
+
+  klaytn:
+    node-url: ${NODE_URL}
+    chain-id: 8217
+    transaction-account-pk: "0x34dd269ddc4eef3671098e7dc2323eecab7d782eb6cc4e8d4ea2d5d8b595b81a" # 깡통임 바꿔야함
+    contracts:
+      viewer-address: "0xA227BA7b8c139DDbEa57Fc97614B64B1a64CCABa"
+      klayfi-viewer-address: "0x72840Fd37C1C42038A8f4922BC8c10A1a04042e8"
+      helper-address: "0xA227BA7b8c139DDbEa57Fc97614B64B1a64CCABa"
+      klayswap-viewer-address: "0x44371afd3808371B8b66A476e42FA6a43c7D6b17"
+      definix-viewer-address: "0x7Adccbc1121f2C837257e9888D0175fEbf45F88D"
+      swap-by-klayswap-impl-address: "0x155299540A3Fa81FdA27a8fc17fA4642B726DFCd"
+      swap-by-definix-impl-address: "0xBf0D84088Ada12C0fe2E94EF328E518e3aafAb01"
+
+  exchange:
+    coin-one:
+      host: "https://api.coinone.co.kr"
+    korbit:
+      host: "https://api.korbit.co.kr/v1/"
+
+  slack:
+    token: ${SLACK_TOKEN}
+    enable: true

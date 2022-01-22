@@ -1,0 +1,39 @@
+package io.coin.ccbc.klayswap;
+
+import io.coin.ccbc.domain.Address;
+import java.math.BigInteger;
+import java.util.List;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public class WalletPoolBalance {
+
+  private Address poolAddress;
+  private Address walletAddress;
+  @Deprecated // lp amount is deprecated
+  private BigInteger lpAmount;
+  private BigInteger token0Balance;
+  private BigInteger token1Balance;
+  private List<WalletPoolInterest> interests;
+
+  public static WalletPoolBalance of(
+      Address poolAddress,
+      Address walletAddress,
+      BigInteger lpAmount,
+      BigInteger token0Balance,
+      BigInteger token1Balance,
+      List<WalletPoolInterest> interests
+  ) {
+    return new WalletPoolBalance(
+        poolAddress,
+        walletAddress,
+        lpAmount,
+        token0Balance,
+        token1Balance,
+        interests
+    );
+  }
+}

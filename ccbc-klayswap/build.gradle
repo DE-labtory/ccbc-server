@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group = 'io.coin.ccbc'
+version = '0.0.1-SNAPSHOT'
+
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation(project(':ccbc-domain'))
+    implementation(project(':ccbc-support'))
+    implementation(project(':ccbc-jpa'))
+
+    implementation "com.squareup.okhttp3:okhttp:4.9.1"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
+    implementation "org.web3j:core:4.6.4"
+    implementation "com.klaytn.caver:core:1.6.2"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}

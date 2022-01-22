@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+}
+
+group 'io.coin.ccbc'
+version '0.0.1'
+
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    implementation(project(':ccbc-domain'))
+    implementation(project(':ccbc-support'))
+    implementation(project(':ccbc-klayswap'))
+    implementation(project(':ccbc-definix'))
+    implementation(project(':ccbc-kokoa'))
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testRuntimeOnly "org.junit.platform:junit-platform-commons:1.7.0"
+
+    // libraries
+
+    // caver 1.6.2에서 쓰는 web3j랑 okhhtp 3버전이랑 충돌납니다..!
+    // okhttp 4.9.1버전으로 강제 세팅해줘야합니다
+    // infra module을 사용하는 (api, worker)쪽에서도 오류가난다면 okhttp 버전을 오버라이딩해주세요.
+    implementation "com.squareup.okhttp3:okhttp:4.9.1"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
+    implementation "org.web3j:core:4.6.4"
+
+    implementation "com.klaytn.caver:core:1.6.2"
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    // slack
+    implementation "com.slack.api:slack-api-client:1.10.0"
+
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.3'
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+group 'io.coin.ccbc'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(project(':ccbc-domain'))
+    implementation(project(':ccbc-infra'))
+    implementation(project(':ccbc-jpa'))
+    implementation(project(':ccbc-klayswap'))
+    implementation(project(':ccbc-definix'))
+    implementation(project(':ccbc-kai'))
+    implementation(project(':ccbc-klayfi'))
+    implementation(project(':ccbc-support'))
+
+    // spring
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-quartz:2.5.3'
+
+    // db
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // infra 모듈의 web3, caver에서 okhttp3 버전 이슈가 있어서 infra gradle에서 아래 버전을 overriding 중.
+    // 하지만 infra 모듈을 끌어쓰면서 오버라이딩이 제대로 적용되지 않아서, infra를 사용하는 입장인 worker에도 overriding을 해줌.
+    // TODO: infra 이슈가 api, worker에 영향을 미치지 않도록 세팅하는 방법 찾아야함
+    // okhttp3
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+
+    // junit
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    // cache
+    implementation 'com.github.ben-manes.caffeine:caffeine'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+}

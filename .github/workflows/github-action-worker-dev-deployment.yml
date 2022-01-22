@@ -1,0 +1,42 @@
+name: ccbc-worker docker image push action
+
+on:
+  push:
+    branches:
+      - "develop"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: Get the commit hash
+        id: get_commit_hash
+        run: echo "::set-output name=sha_short::$(git rev-parse --short=8 HEAD)"
+      - name: Build Docker Image with Commit Hash Tagging and Push to Docker Hub
+        uses: docker/build-push-action@v1.1.1
+        with:
+          path: ./ccbc-worker
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          push: true
+          repository: ccbcdev/ccbc-worker
+          tags: ${{ steps.get_commit_hash.outputs.sha_short }}
+      - name: Build Docker Image with Latest Tagging and Push to Docker Hub
+        uses: docker/build-push-action@v1.1.1
+        with:
+          path: ./ccbc-worker
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          push: true
+          repository: ccbcdev/ccbc-worker
+          tags: latest

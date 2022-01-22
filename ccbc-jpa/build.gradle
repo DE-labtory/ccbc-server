@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group = 'io.coin.ccbc'
+version = '0.0.1'
+
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(project(':ccbc-support'))
+
+    api 'org.springframework.boot:spring-boot-starter-data-jpa'
+}
+
+test {
+    useJUnitPlatform()
+}

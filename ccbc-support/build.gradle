@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'io.coin.ccbc'
+version '0.0.1-SNAPSHOT'
+
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.bouncycastle:bcprov-jdk15on:1.68"
+    // junit
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    // jackson
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+}

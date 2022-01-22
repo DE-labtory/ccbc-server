@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group 'io.coin.ccbc'
+version '0.0.1'
+
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(project(':ccbc-support'))
+    implementation(project(':ccbc-jpa'))
+
+    // junit
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    // util
+    api group: 'org.apache.commons', name: 'commons-collections4', version: '4.0'
+}

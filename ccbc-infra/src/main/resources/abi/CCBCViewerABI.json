@@ -1,0 +1,103 @@
+[
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_coinAddresses",
+        "type": "address[]"
+      },
+      {
+        "name": "_walletAddress",
+        "type": "address"
+      }
+    ],
+    "name": "getCoinBalances",
+    "outputs": [
+      {
+        "name": "coinAddresses",
+        "type": "address[]"
+      },
+      {
+        "name": "balances",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "poolAddresses",
+        "type": "address[]"
+      },
+      {
+        "name": "walletAddress",
+        "type": "address"
+      }
+    ],
+    "name": "getKlaySwapPoolLpBalances",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address[]"
+      },
+      {
+        "name": "",
+        "type": "uint256[]"
+      },
+      {
+        "name": "",
+        "type": "uint256[]"
+      },
+      {
+        "name": "",
+        "type": "uint256[]"
+      },
+      {
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "poolAddresses",
+        "type": "address[]"
+      }
+    ],
+    "name": "getPoolInfos",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address[]"
+      },
+      {
+        "name": "",
+        "type": "uint256[]"
+      },
+      {
+        "name": "",
+        "type": "uint256[]"
+      },
+      {
+        "name": "",
+        "type": "uint256[]"
+      },
+      {
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
